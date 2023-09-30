@@ -1,0 +1,839 @@
+{
+	"info": {
+		"_postman_id": "7ee1caa4-1ac3-4d1d-8f55-aad130c8f323",
+		"name": "Trello API Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28933127"
+	},
+	"item": [
+		{
+			"name": "Missing Auth - Token",
+			"item": [
+				{
+					"name": "Create a Board  - Missing Auth",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"console.clear();"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"The Status Code should be 401 - Unauthorized\", function(){\r",
+									"    pm.response.to.have.status(401)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body message must be not null\", function(){\r",
+									"     const response = pm.response.text();\r",
+									"    pm.expect(response).not.null;\r",
+									"})\r",
+									"pm.test(\"Response body message must be 'Invalid Key'\", function(){\r",
+									"    const response = pm.response.text();\r",
+									"    pm.expect(response).to.eql('invalid key')\r",
+									"})\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Learning Postman 2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL_Trello}}/1/boards",
+							"host": [
+								"{{baseURL_Trello}}"
+							],
+							"path": [
+								"1",
+								"boards"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{trelloKey}}",
+									"disabled": true
+								},
+								{
+									"key": "token",
+									"value": "{{trelloToken}}",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a new List  - Missing Auth",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"The Status Code should be 401 - Unauthorized\", function(){\r",
+									"    pm.response.to.have.status(401)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body message must be not null\", function(){\r",
+									"     const response = pm.response.text();\r",
+									"    pm.expect(response).not.null;\r",
+									"})\r",
+									"pm.test(\"Response body message must be 'Invalid Key'\", function(){\r",
+									"    const response = pm.response.text();\r",
+									"    pm.expect(response).to.eql('invalid key')\r",
+									"})\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"console.clear();"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL_Trello}}/1/lists?name=TestMOVE&idBoard=64cbb938495dac82662339b7",
+							"host": [
+								"{{baseURL_Trello}}"
+							],
+							"path": [
+								"1",
+								"lists"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "TestMOVE"
+								},
+								{
+									"key": "idBoard",
+									"value": "64cbb938495dac82662339b7"
+								},
+								{
+									"key": "key",
+									"value": "{{trelloKey}}",
+									"disabled": true
+								},
+								{
+									"key": "token",
+									"value": "{{trelloToken}}",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a new Card  - Missing Auth",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"The Status Code should be 401 - Unauthorized\", function(){\r",
+									"    pm.response.to.have.status(401)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body message must be not null\", function(){\r",
+									"     const response = pm.response.text();\r",
+									"    pm.expect(response).not.null;\r",
+									"})\r",
+									"pm.test(\"Response body message must be 'Invalid Key'\", function(){\r",
+									"    const response = pm.response.text();\r",
+									"    pm.expect(response).to.eql('invalid key')\r",
+									"})\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"console.clear();"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Card Test by Postman to Move\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL_Trello}}/1/cards?idList=64cbec16c19670f2a7fb5ccb",
+							"host": [
+								"{{baseURL_Trello}}"
+							],
+							"path": [
+								"1",
+								"cards"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{trelloKey}}",
+									"disabled": true
+								},
+								{
+									"key": "token",
+									"value": "{{trelloToken}}",
+									"disabled": true
+								},
+								{
+									"key": "idList",
+									"value": "64cbec16c19670f2a7fb5ccb"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Move the Card to Other List  - Missing Auth",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"The Status Code should be 401 - Unauthorized\", function(){\r",
+									"    pm.response.to.have.status(401)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body message must be not null\", function(){\r",
+									"     const response = pm.response.text();\r",
+									"    pm.expect(response).not.null;\r",
+									"})\r",
+									"pm.test(\"Response body message must be 'Invalid Key'\", function(){\r",
+									"    const response = pm.response.text();\r",
+									"    pm.expect(response).to.eql('invalid key')\r",
+									"})\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"console.clear();"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"idList\": \"64cbe3884249373c8c17e5e1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL_Trello}}/1/cards/:id?idList=64cbecac4fc225179e862c7c",
+							"host": [
+								"{{baseURL_Trello}}"
+							],
+							"path": [
+								"1",
+								"cards",
+								":id"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{trelloKey}}",
+									"disabled": true
+								},
+								{
+									"key": "token",
+									"value": "{{trelloToken}}",
+									"disabled": true
+								},
+								{
+									"key": "idList",
+									"value": "64cbecac4fc225179e862c7c"
+								}
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "64cbecac4fc225179e862c7c"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Move the Card to Other List  - Missing Auth",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"The Status Code should be 401 - Unauthorized\", function(){\r",
+									"    pm.response.to.have.status(401)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body message must be not null\", function(){\r",
+									"     const response = pm.response.text();\r",
+									"    pm.expect(response).not.null;\r",
+									"})\r",
+									"pm.test(\"Response body message must be 'Invalid Key'\", function(){\r",
+									"    const response = pm.response.text();\r",
+									"    pm.expect(response).to.eql('invalid key')\r",
+									"})\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"console.clear();"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"idList\": \"64cbe3884249373c8c17e5e1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL_Trello}}/1/boards/:id",
+							"host": [
+								"{{baseURL_Trello}}"
+							],
+							"path": [
+								"1",
+								"boards",
+								":id"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{trelloKey}}",
+									"disabled": true
+								},
+								{
+									"key": "token",
+									"value": "{{trelloToken}}",
+									"disabled": true
+								},
+								{
+									"key": "idList",
+									"value": "64cbecac4fc225179e862c7c",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "64cbb938495dac82662339b7"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a Single Board - Missing Auth",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"console.clear();"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"The Status Code should be 401 - Unauthorized\", function(){\r",
+									"    pm.response.to.have.status(401)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body message must be not null\", function(){\r",
+									"     const response = pm.response.text();\r",
+									"    pm.expect(response).not.null;\r",
+									"})\r",
+									"pm.test(\"Response body message must be 'Invalid token'\", function(){\r",
+									"    const response = pm.response.text();\r",
+									"    pm.expect(response).to.eql('unauthorized permission requested')\r",
+									"})\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL_Trello}}/1/boards/:id",
+							"host": [
+								"{{baseURL_Trello}}"
+							],
+							"path": [
+								"1",
+								"boards",
+								":id"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{trelloKey}}",
+									"disabled": true
+								},
+								{
+									"key": "token",
+									"value": "{{trelloToken}}",
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{standardBoard}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Boards  - Missing Auth",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"The Status Code should be 400 - Bad Request\", function(){\r",
+									"    pm.response.to.have.status(400)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response body message must be not null\", function(){\r",
+									"     const response = pm.response.text();\r",
+									"    pm.expect(response).not.null;\r",
+									"})\r",
+									"pm.test(\"Response body message must be 'Invalid token'\", function(){\r",
+									"    const response = pm.response.text();\r",
+									"    pm.expect(response).to.eql('invalid token')\r",
+									"})\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"console.clear();"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL_Trello}}/1/members/me/boards",
+							"host": [
+								"{{baseURL_Trello}}"
+							],
+							"path": [
+								"1",
+								"members",
+								"me",
+								"boards"
+							],
+							"query": [
+								{
+									"key": "key",
+									"value": "{{trelloKey}}",
+									"disabled": true
+								},
+								{
+									"key": "token",
+									"value": "{{trelloToken}}",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Positive Single Request Tests",
+			"item": [
+				{
+					"name": "GET Requests Tests",
+					"item": [
+						{
+							"name": "Get a Single Board",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"console.clear();"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"The Status Code should be 200 - Unauthorized\", function(){\r",
+											"    pm.response.to.have.status(200)\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response body message must be not null\", function(){\r",
+											"     const response = pm.response.text();\r",
+											"    pm.expect(response).not.null;\r",
+											"})\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL_Trello}}/1/boards/:id?key={{trelloKey}}&token={{trelloToken}}",
+									"host": [
+										"{{baseURL_Trello}}"
+									],
+									"path": [
+										"1",
+										"boards",
+										":id"
+									],
+									"query": [
+										{
+											"key": "key",
+											"value": "{{trelloKey}}"
+										},
+										{
+											"key": "token",
+											"value": "{{trelloToken}}"
+										}
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{standardBoard}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Boards",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"The Status Code should be 200 - Unauthorized\", function(){\r",
+											"    pm.response.to.have.status(200)\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response body message must be not null\", function(){\r",
+											"     const response = pm.response.text();\r",
+											"    pm.expect(response).not.null;\r",
+											"})\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL_Trello}}/1/members/me/boards?key={{trelloKey}}&token={{trelloToken}}",
+									"host": [
+										"{{baseURL_Trello}}"
+									],
+									"path": [
+										"1",
+										"members",
+										"me",
+										"boards"
+									],
+									"query": [
+										{
+											"key": "key",
+											"value": "{{trelloKey}}"
+										},
+										{
+											"key": "token",
+											"value": "{{trelloToken}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Create and Delete Board",
+					"item": [
+						{
+							"name": "Create a Board",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"console.clear();"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status Code should be 200 - OK\", function(){\r",
+											"        pm.response.to.have.status(200)\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response body should not be null\", function(){\r",
+											"    const response = pm.response.text();\r",
+											"    pm.expect(response).not.null;\r",
+											"    console.log(response)\r",
+											"})\r",
+											"\r",
+											"var jAuth = JSON.parse(responseBody);\r",
+											"pm.collectionVariables.set(\"boardId\", jAuth.id);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"Randomic {{$randomFullName}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL_Trello}}/1/boards?key={{trelloKey}}&token={{trelloToken}}",
+									"host": [
+										"{{baseURL_Trello}}"
+									],
+									"path": [
+										"1",
+										"boards"
+									],
+									"query": [
+										{
+											"key": "key",
+											"value": "{{trelloKey}}"
+										},
+										{
+											"key": "token",
+											"value": "{{trelloToken}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a Board",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"console.clear();"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status Code should be 200 - OK\", function(){\r",
+											"        pm.response.to.have.status(200)\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Response body should not be null\", function(){\r",
+											"    const response = pm.response.text();\r",
+											"    pm.expect(response).not.null;\r",
+											"    console.log(response)\r",
+											"})"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL_Trello}}/1/boards/:id?key={{trelloKey}}&token={{trelloToken}}",
+									"host": [
+										"{{baseURL_Trello}}"
+									],
+									"path": [
+										"1",
+										"boards",
+										":id"
+									],
+									"query": [
+										{
+											"key": "key",
+											"value": "{{trelloKey}}"
+										},
+										{
+											"key": "token",
+											"value": "{{trelloToken}}"
+										}
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "{{boardId}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL_Trello",
+			"value": "https://api.trello.com"
+		},
+		{
+			"key": "trelloKey",
+			"value": "870393cc259ee2936d2368dcf86ae0b5"
+		},
+		{
+			"key": "trelloToken",
+			"value": "ATTA7a9ec9aa520bd182cef0bb1445734b643d0fdea6091e635777a4a526ada76ee034090BD1"
+		},
+		{
+			"key": "boardId",
+			"value": ""
+		},
+		{
+			"key": "standardBoard",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
